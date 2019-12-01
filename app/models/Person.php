@@ -8,12 +8,12 @@ class Person
 
   function checkDna(){
 
-    // Verificación que el DNA posee al menos 4 caracteres o 4 secuencias y que
-    // todas las cadenas tienen el mismo largo
+    // Verificación que el DNA posee al menos 4 caracteres, que
+    // todas las cadenas tienen el mismo largo y que la matriz es cuadrada
     $chars = strlen($this->dna[0]);
     $secuences = sizeof($this->dna);
 
-    if ($chars < 4 && $secuences < 4) {
+    if ($chars < 4 || $secuences != $chars) {
       return false;
     }
 
@@ -27,13 +27,6 @@ class Person
     return true;
 
   }
-
-  function isMutant(){
-    foreach ($this->dna as $key => $value) {
-      return true;
-    }
-  }
-
 
 }
 
