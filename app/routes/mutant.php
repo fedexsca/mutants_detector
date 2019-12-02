@@ -14,6 +14,7 @@ $app->post('/mutant', function (Request $request, Response $response, $args) {
   if ($person->checkDna()) {
     $mutant = isMutant($person->dna);
     $person->setIsMutant($mutant);
+    $person->save();
 
     if ($mutant) {
       $response = $response->withStatus(200);
