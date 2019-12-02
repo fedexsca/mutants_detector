@@ -6,6 +6,10 @@ class Person
     $this->dna = $dna;
   }
 
+  function setIsMutant($mutant){
+      $this->isMutant = $mutant;
+  }
+
   function checkDna(){
 
     // Verificación que el DNA posee al menos 4 caracteres, que

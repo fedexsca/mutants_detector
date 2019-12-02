@@ -13,14 +13,16 @@ $app->post('/mutant', function (Request $request, Response $response, $args) {
 
   if ($person->checkDna()) {
     $mutant = isMutant($person->dna);
-  } else {
-    $response->getBody()->write("El DNA enviado no es analizable");
-  }
+    $person->setIsMutant($mutant);
 
-  if ($mutant) {
-    $response = $response->withStatus(200);
+    if ($mutant) {
+      $response = $response->withStatus(200);
+    } else {
+      $response = $response->withStatus(403);
+    }
+
   } else {
-    $response = $response->withStatus(403);
+    $response = $response->withStatus(422);
   }
 
   return $response;
