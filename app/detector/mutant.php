@@ -4,7 +4,7 @@ function isMutant($dna){
   $matrix;
   $size = sizeof($dna);
 
-  //Generación de la matrix
+  //Generación de la matriz
   for ($row=0; $row < $size; $row++) {
     for ($col=0; $col < $size; $col++) {
       $matrix[$row][$col] = $dna[$row][$col];
@@ -21,10 +21,6 @@ function isMutant($dna){
 
     case 5:
     $result = analizeDnaSize5($size, $matrix);
-    break;
-
-    case 4:
-    $result = analizeDnaSize4($size, $matrix);
     break;
 
     default:
@@ -115,51 +111,6 @@ function analizeDnaSize5($size, $matrix){
         ($matrix[$mid][$position] == $matrix[$mid-1][$position] && $matrix[$mid][$position] == $matrix[$mid+2][$position])
         ||
         ($matrix[$mid][$position] == $matrix[$mid-1][$position] && $matrix[$mid][$position] == $matrix[$mid-2][$position])
-      ) {
-        return true;
-      }
-    }
-
-  }
-
-  // Se analiza diagonalmente
-  return analizeDiagonal($size, $matrix);
-
-}
-
-/**
- * [analizeDnaSize4 Analiza por ADN Mutante en matriz con tamaño 4]
- * @param  int $size   Tamaño de la matriz
- * @param  array $matrix Matriz con cadena DNA
- * @return boolean Si verifica ADN Mutante
- */
-function analizeDnaSize4($size, $matrix){
-  // Elemento central
-  $mid = intdiv(($size-1), 2);
-/**
- * [analizeDnaSize4 Analiza por ADN Mutante en matriz con tamaño 4]
- * @param  int $size   Tamaño de la matriz
- * @param  array $matrix Matriz con cadena DNA
- * @return boolean Si verifica ADN Mutante
- */
-
-  for ($position=0; $position < $size; $position++) {
-
-    // Si el par elementos centrales coinciden
-    if ($matrix[$position][$mid] == $matrix[$position][$mid+1]) {
-      // Y los elementos unicos antes y después del par coinciden
-      if (
-        ($matrix[$position][$mid] == $matrix[$position][$mid-1] && $matrix[$position][$mid] == $matrix[$position][$mid+2])
-      ) {
-        return true;
-      }
-    }
-
-    // Si el par elementos centrales coinciden
-    if ($matrix[$mid][$position] == $matrix[$mid+1][$position]) {
-      // Y los elementos unicos antes y después del par coinciden
-      if (
-        ($matrix[$mid][$position] == $matrix[$mid-1][$position] && $matrix[$mid][$position] == $matrix[$mid+2][$position])
       ) {
         return true;
       }

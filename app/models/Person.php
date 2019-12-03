@@ -6,6 +6,17 @@ class Person
     $this->dna = $dna;
   }
 
+
+  function setDnaSecuence(){
+    $dnaSecuence = "";
+
+    foreach ($this->dna as $key => $value) {
+      $dnaSecuence .= $value;
+    }
+
+    $this->dnaSecuence = $dnaSecuence;
+  }
+
   function setIsMutant($mutant){
     if (is_null($mutant)) {
       $this->isMutant = 'false';
@@ -14,10 +25,16 @@ class Person
     }
   }
 
-  function checkDna(){
+  function getIsMutant(){
+    $sql = "SELECT is_mutant FROM people WHERE dna = '$this->dnaSecuence';";
+    $status = db::query($sql);
+    return $status[0]->is_mutant;
+  }
 
-    // Verificación que el DNA posee al menos 4 caracteres, que
-    // todas las cadenas tienen el mismo largo y que la matriz es cuadrada
+  // Verificación que el DNA posee al menos 4 caracteres, que
+  // todas las cadenas tienen el mismo largo y que la matriz es cuadrada
+  // y que se permiten solo caracteres específicos
+  function checkDna(){
     $chars = strlen($this->dna[0]);
     $secuences = sizeof($this->dna);
 
@@ -25,85 +42,39 @@ class Person
       return false;
     }
 
-    for ($i=1; $i < $secuences; $i++) {
-      if (strlen($this->dna[$i]) != $chars) {
+    for ($i=0; $i < $secuences; $i++) {
+      if (strlen($this->dna[$i]) != $chars || $this->not_clean($this->dna[$i])) {
         return false;
       }
     }
 
     // Si cumple con la validacion es analizable
     return true;
-
   }
 
+  // Verifica que solo contenga caracteres permitidos
+  function not_clean ($string) {
+    return preg_match("/[^ATCG]/u", $string);
+  }
+
+  // Guardar consulta en DB
   function save(){
 
-    $dnaSecuence = "";
-
-    foreach ($this->dna as $key => $value) {
-      $dnaSecuence .= $value;
+    // Si ya existe registro en DB de la secuencia se aumenta el contador
+    if (db::exist($this->dnaSecuence)) {
+      $sql = "UPDATE people SET count = count+1 WHERE dna = '$this->dnaSecuence';";
+      // Caso contrario se guarda un nuevo registro en DB
+    } else {
+      $sql = "INSERT INTO people VALUES (null, '$this->dnaSecuence', $this->isMutant,1);";
     }
 
-    $sql = "INSERT INTO people VALUES (null, '$dnaSecuence', $this->isMutant,1);";
-
-    try {
-      // Get DB Object
-      $db = new db();
-
-      // connect to DB
-      $db = $db->connect();
-
-      // query
-      $stmt = $db->query( $sql );
-      $db = null; // clear db object
-
-
-    } catch( PDOException $e ) {
-
-      // show error message as Json format
-      echo '{"error": {"msg": ' . $e->getMessage() . '}';
-    }
+    db::store($sql);
   }
 
-  // function getTotalAnalized(){
-  //
-  //
-  // }
-
-  function all(){
-     $sql = "SELECT count(dna) AS total FROM people;";
-     return Person::query($sql);
-  }
-
-  function positive(){
-     $sql = "SELECT count(dna) AS total FROM people;";
-     return Person::query($sql);
-  }
-
-  function query($sql){
-    try {
-      // Get DB Object
-      $db = new db();
-
-      // connect to DB
-      $db = $db->connect();
-
-      // query
-      $stmt = $db->query( $sql );
-      $resultset = $stmt->fetchAll( PDO::FETCH_OBJ );
-      $db = null; // clear db object
-
-      // print out the result as json format
-      return $resultset;
-
-
-    } catch( PDOException $e ) {
-
-      // show error message as Json format
-      echo '{"error": {"msg": ' . $e->getMessage() . '}';
-    }
+  // Incrementar DNA ya existente
+  function incrementCount(){
+    $sql = "UPDATE people SET count = count+1 WHERE dna = '$this->dnaSecuence';";
+    db::store($sql);
   }
 
 }
-
-?>
