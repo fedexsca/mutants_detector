@@ -1,7 +1,4 @@
-<?php
-require __DIR__ . '/../config/db.php';
-
-$sql = "CREATE TABLE `people` (
+CREATE TABLE `people` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `dna` text COLLATE utf8_unicode_ci NOT NULL,
   `is_mutant` tinyint(1) NOT NULL DEFAULT 0,
@@ -13,7 +10,4 @@ ALTER TABLE `people`
 
 ALTER TABLE `people`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;";
-
-db::query($sql);
-echo "Operación de migración finalizada";
+COMMIT;
