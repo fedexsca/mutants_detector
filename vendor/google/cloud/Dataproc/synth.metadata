@@ -1,0 +1,42 @@
+{
+  "updateTime": "2019-11-09T10:59:39.205565Z",
+  "sources": [
+    {
+      "generator": {
+        "name": "artman",
+        "version": "0.41.1",
+        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "34e661f58d58fa57da8ed113a3d8bb3de26b307d",
+        "internalRef": "279417429"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "dataproc",
+        "apiVersion": "v1",
+        "language": "php",
+        "generator": "gapic",
+        "config": "google/cloud/dataproc/artman_dataproc_v1.yaml"
+      }
+    },
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "dataproc",
+        "apiVersion": "v1beta2",
+        "language": "php",
+        "generator": "gapic",
+        "config": "google/cloud/dataproc/artman_dataproc_v1beta2.yaml"
+      }
+    }
+  ]
+}

@@ -1,16 +1,14 @@
 <?php
 class db {
 
-  private $dbhost = '127.0.0.1';
-  private $dbuser = 'root';
-  private $dbpass = '';
-  private $dbname = 'mutant_detector';
+  private $dsn = 'mysql:dbname=mutant_detector;unix_socket=/cloudsql/mutantsml:southamerica-east1:mutantssql';
+  private $user = 'root';
+  private $password = '33233733';
 
   public function connect() {
 
-    // https://www.php.net/manual/en/pdo.connections.php
-    $prepare_conn_str = "mysql:host=$this->dbhost;dbname=$this->dbname";
-    $dbConn = new PDO( $prepare_conn_str, $this->dbuser, $this->dbpass );
+
+    $dbConn = new PDO( $this->dsn, $this->user, $this->password );
 
     // https://www.php.net/manual/en/pdo.setattribute.php
     $dbConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );

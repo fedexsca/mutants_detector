@@ -1,0 +1,32 @@
+{
+  "updateTime": "2019-11-08T11:02:29.766099Z",
+  "sources": [
+    {
+      "generator": {
+        "name": "artman",
+        "version": "0.41.1",
+        "dockerImage": "googleapis/artman@sha256:545c758c76c3f779037aa259023ec3d1ef2d57d2c8cd00a222cb187d63ceac5e"
+      }
+    },
+    {
+      "git": {
+        "name": "googleapis",
+        "remote": "https://github.com/googleapis/googleapis.git",
+        "sha": "d323b287c782802242005072d15f1474d7d10819",
+        "internalRef": "279234903"
+      }
+    }
+  ],
+  "destinations": [
+    {
+      "client": {
+        "source": "googleapis",
+        "apiName": "talent",
+        "apiVersion": "v4beta1",
+        "language": "php",
+        "generator": "gapic",
+        "config": "google/cloud/talent/artman_talent_v4beta1.yaml"
+      }
+    }
+  ]
+}
