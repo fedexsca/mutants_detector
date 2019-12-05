@@ -1,0 +1,8 @@
+<phpunit>
+<filter>
+  <whitelist processUncoveredFilesFromWhitelist="true">
+    <file>/home/federico/Desarrollo/mutantsDetector/app/models/Person.php</file>
+    <file>/home/federico/Desarrollo/mutantsDetector/app/detector/mutant.php</file>
+  </whitelist>
+</filter>
+</phpunit>

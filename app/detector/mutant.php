@@ -181,7 +181,7 @@ function analizeDiagonal($size, $matrix){
   }
 
   // Derecha y arriba
-  for ($row= $size - 3; $row < $size; $row++) {
+  for ($row=3; $row < $size; $row++) {
     for ($col=0; $col < $size - 3; $col++) {
       // Si el elemento en la row-col siguiente es igual
       if ($matrix[$row][$col] == $matrix[$row-1][$col+1]) {

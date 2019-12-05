@@ -1,14 +1,16 @@
 <?php
 class db {
 
-  private $dsn = 'mysql:dbname=mutant_detector;unix_socket=/cloudsql/mutantsml:southamerica-east1:mutantssql';
-  private $user = 'root';
-  private $password = '33233733';
+  private $dbhost = '127.0.0.1';
+  private $dbuser = 'root';
+  private $dbpass = '';
+  private $dbname = 'mutant_detector';
 
   public function connect() {
 
-
-    $dbConn = new PDO( $this->dsn, $this->user, $this->password );
+    // https://www.php.net/manual/en/pdo.connections.php
+    $prepare_conn_str = "mysql:host=$this->dbhost;dbname=$this->dbname";
+    $dbConn = new PDO( $prepare_conn_str, $this->dbuser, $this->dbpass );
 
     // https://www.php.net/manual/en/pdo.setattribute.php
     $dbConn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
@@ -39,7 +41,7 @@ class db {
     } catch( PDOException $e ) {
 
       // mensaje de error
-      echo '{"error": {"msg": ' . $e->getMessage() . '}';
+      echo '{"error": {"msg": ' . $e->getMessage() . ' query: ' . $sql . '}';
     }
   }
 
@@ -63,7 +65,7 @@ class db {
     } catch( PDOException $e ) {
 
       // mensaje de error
-      echo '{"error": {"msg": ' . $e->getMessage() . '}';
+      echo '{"error": {"msg": ' . $e->getMessage() . ' query: ' . $sql . '}';
     }
   }
 

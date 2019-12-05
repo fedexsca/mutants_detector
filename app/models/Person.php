@@ -19,7 +19,7 @@ class Person
 
   function setIsMutant($mutant){
     if (is_null($mutant)) {
-      $this->isMutant = 'false';
+      $this->isMutant = 0;
     } else {
       $this->isMutant = $mutant;
     }
@@ -65,7 +65,7 @@ class Person
       $sql = "UPDATE people SET count = count+1 WHERE dna = '$this->dnaSecuence';";
       // Caso contrario se guarda un nuevo registro en DB
     } else {
-      $sql = "INSERT INTO people VALUES (null, '$this->dnaSecuence', $this->isMutant,1);";
+      $sql = "INSERT INTO people VALUES (null, '$this->dnaSecuence', $this->isMutant, 1);";
     }
 
     db::store($sql);
