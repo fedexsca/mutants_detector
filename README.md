@@ -68,8 +68,8 @@ private $dbhost = 'su_host';
  private $dbname = 'nombre_db';
 ```
 4. Abra la terminal y colóquese sobre la carpeta raiz del proyecto
-5. Instale las dependencias con ```composer install```
-6. Inicie el servicio mediante ``` php -S localhost:8888 -t public public/index.php``` 
+5. Instale las dependencias con ```$composer install```
+6. Inicie el servicio mediante ```$php -S localhost:8888 -t public public/index.php``` 
 7. Podrá verificar el funcionamento visitando [http://localhost:8888/](http://localhost:8888/)
 
 ### API Url
