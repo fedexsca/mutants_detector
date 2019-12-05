@@ -76,7 +76,7 @@ private $dbname = 'nombre_db';
 
 URL local: http://localhost:8888
 
-URL hosteada en Google: https://mutantsml.appspot.com/
+URL hosteada en Google App Engine: https://mutantsml.appspot.com/
 
 ### Servicios
 #### Analisis Mutante
