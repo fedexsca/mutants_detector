@@ -1,22 +1,6 @@
 # Ejercicio Mutantes - Mercadolibre
 
-Ejercicio práctico para MercadoLibre. 
-
-- [Ejercicio](#ejercicio)
-  - [Especificaciones](#especificaciones)
-  - [Implementación](#implementaci%C3%B3n)
-  - [Comentarios](#comentarios)
-- [Setup](#setup)
-  - [Instrucciones](#instrucciones)
-  - [Uso](#uso)
-  - [API Url](#api)
-  - [Servicios](#servicios)
-    - [Es mutante](#es-mutante)
-    - [Estadisticas](#estadisticas)
-- [Test](#test)
-  - [Automaticos](#automaticos)
-  - [Scripts](#scripts)
-  - [Cobertura](#cobertura)
+Ejercicio práctico para MercadoLibre.
 
 ## Ejercicio
 
@@ -25,24 +9,27 @@ contra los X-Mens.
 Te ha contratado a ti para que desarrolles un proyecto que detecte si un
 humano es mutante basándose en su secuencia de ADN.
 Para eso te ha pedido crear un programa con un método o función con la siguiente firma:  
-  
+
 **boolean isMutant(String[] dna);**  
-  
+
 En donde recibirás como parámetro un array de Strings que representan cada fila de una tabla
 de (NxN) con la secuencia del ADN. Las letras de los Strings solo pueden ser: (A,T,C,G), las
 cuales representa cada base nitrogenada del ADN.
 
 ### Especificaciones
 
-El archivo PDF con el enunciado recibido se encuentra en la carpeta `espscificaciones`.
+El archivo PDF con el enunciado recibido se encuentra en la carpeta `especificaciones`.
 
-### Implementacion
+### Implementacion y requisitos
 
-- [Slim Framework](http://sparkjava.com)
-- [MySQL](https://www.mongodb.com)
-- [PHP7.2](https://mongodb.github.io/morphia/)
-- [PHPUnit]()
-- XDebug()
+- [Slim Framework](http://www.slimframework.com/)
+- [MySQL](https://www.mysql.com/)
+- [PHP7.2](https://www.php.net/)
+- [PHPUnit](https://phpunit.de/)
+- [XDebug](https://xdebug.org/)
+
+#### Requisitos
+ [Composer](https://getcomposer.org/) para dependecias
 
 ### Comentarios
 Decidí realizar el desafío con las tecnologías con las que estoy más familiarizado.
@@ -53,58 +40,52 @@ Definí tres algoritmos: 1 de uso general y dos especiales para matrices con tam
 
 - El algoritmo de uso general recorre la matriz en búsqueda de una secuencia de dos caracteres iguales, para luego comparar si la secuencia de dos caracteres siguientes también coincide
 
-- El algoritmo de uso en casos especiales fue realizado e implementado posteriormente. Este se basa en la premisa que para matrices con tamaño menor o igual a 6 es condición necesaria para una fila o una columna que los elementos en las columas centrales coincidan. De esta manera se puede descartar una fila o columna no mutante con solo una comparación. 
-Si en cambio se encuentra coincidencia en los elementos centrales, se procede a comparar con los elementos anteriores y siguientes para determinar si el adn es mutante. 
+- El algoritmo de uso en casos especiales fue realizado e implementado posteriormente. Este se basa en la premisa que para matrices con tamaño menor o igual a 6 es condición necesaria para una fila o una columna que los elementos en las columas centrales coincidan. De esta manera se puede descartar una fila o columna no mutante con solo una comparación.
+Si en cambio se encuentra coincidencia en los elementos centrales, se procede a comparar con los elementos anteriores y siguientes para determinar si el adn es mutante.
 
-Ambos algoritmos utilizan el mismo método para las búsquedas en las diagonales
+Nota: Ambos algoritmos utilizan el mismo método para las búsquedas en las diagonales
 
 #### Gráfico
 ![Estrategias de búsqueda](grafico.png)
 
+- Gris: Posibles ubicaciónes de la secuencia mutante en una fila o columna
+- Verde: Condición necesaria para que exista posibilidad de que sea mutante.
+- Celeste: Ubicaciones a verificar en caso de encontrar coincidencia en columnas centrales
+
 ## Setup
 
 ### Instrucciones
-Para compilar y ejecutar proyecto es necesario contar con la version 1.8 de la JDK y Maven para la gestion de las dependencias.
-
-Tambien es necesario contar con una instancia de MongoDB en caso de querer ejecutarlo localmente, se utilizan los datos de conexion por default de MongoDB, 
-si la instancia se encuentra levantada en un host/port distinto se debe actualizar en el componente
-_[DbServiceImpl](./src/main/java/ar/com/mercadolibre/mutants/services/impl/DbServiceImpl.java)_
+Para ejecutar el proyecto es necesario contar PHP 7.2 y MySQL.
 
 
-Los distintos logs de la aplicacion se generan en el directorio del proyecto.
-En caso de querer loguear en otra ubicacion es necesario actualizar la propiedad _*dir*_ del archivo de configuracion _[log4j2](./src/main/resources/log4j2.xml)_.
-
-Clonar este repositorio: https://github.com/amcomaschi/mutants
-
-Una vez levantada la aplicacion se puede realizar invocaciones a la API.
-
-El puerto por defecto de la API es 4567.
-
-### Uso
-
-Para iniciar la aplicación, asegúrese de cumplir con las instrucciones anteriores. 
-
-Una vez listo, ejecutar la clase principal _MutantsApp_ en su IDE preferido y espere hasta que se inicie la aplicación.
-
-Tambien se puede iniciar la aplicacion con el siguiente comando en linea de comandos posicionandose en el directorio raiz
-del proyecto:
+1. Clonar este repositorio.
+2. Se debe crear una base de datos, en ella importar el al archivo "migration.sql" que se encuentra en el directorio /db.
+3. En el archivo /config/db.php completar con sus datos de conexión a la base de datos:
+```php
+private $dbhost = 'su_host';
+ private $dbuser = 'su_usuario';
+ private $dbpass = 'su_password';
+ private $dbname = 'nombre_db';
 ```
-mvn exec:java -Dexec.mainClass="ar.com.mercadolibre.mutants.MutantsApp"
+4. Abra la terminal y colóquese sobre la carpeta raiz del proyecto
+5. Instale las dependencias con ```composer install```
+6. Inicie el servicio mediante ```php -S localhost:8888 -t public public/index.php
 ```
+7. Podrá verificar el funcionamento visitando [http://localhost:8888/](http://localhost:8888/)
 
 ### API Url
 
-URL local: http://localhost:4567
+URL local: http://localhost:8888
 
-URL hosteada en Amazon: http://ec2-13-58-238-161.us-east-2.compute.amazonaws.com:4567
+URL hosteada en Google: https://mutantsml.appspot.com/
 
 ### Servicios
-#### Es mutante
+#### Analisis Mutante
 
-Request: 
-- POST http://ec2-13-58-238-161.us-east-2.compute.amazonaws.com:4567/mutants/
+Request:
+- POST https://mutantsml.appspot.com/mutant/
 
-Request body (caso ADN mutante):
+Request body raw JSON (ADN mutante):
 
 ```
   {"dna":["ATGCGA", "CAGGGC", "TTATGT", "AGAAGG", "CCCCTA", "TCACTG"]}
@@ -115,7 +96,7 @@ Response:
 ```
   200 OK
 ```
-Request body (caso ADN humano):
+Request body raw JSON (caso ADN humano):
 
 ```
   {"dna":["AATACT", "CCCAGA", "GGGATT", "AATTCC", "GGATCG", "TCACTG"]}
@@ -126,54 +107,37 @@ Response:
 ```
   403 Forbidden
 ```
+Request body raw JSON (caso ADN no analizable):
+
+```
+  {"dna":["XXXXX", "CCCAGA", "GGGATT", "AATTCC", "GGATCG", "TCACTG"]}
+```
+
+Response:
+
+```
+  422 Unprocessable Entity
+```
 
 #### Estadisticas
 
-Request: 
-- GET http://ec2-13-58-238-161.us-east-2.compute.amazonaws.com:4567/stats
+Request:
+- GET https://mutantsml.appspot.com/stats
 
 Response: 200 (application/json)
 
 ```
 {
-    count_mutant_dna: 4,
-    count_human_dna: 1,
-    ratio: 0.8
+    count_mutant_dna: x,
+    count_human_dna: x,
+    ratio: x.x
 }
 ```
 
 ### Test
 
-#### Automaticos
-
-Para la ejecucion de los test automaticos utilice jUnit.
-
-Para poder probar los componentes de base de datos utilice una base de datos MongoDB embebida, esta se levanta durante 
-el test y luego se destruye.
-De esta forma no necesito tener una instancia de base de datos levantada, ni hosteada en algun servidor.
-
-Ademas me aseguro de que la base de datos siempre este consistente en cada ejecucion de los test.
-
-#### Scripts
-
-Cree dos shell scripts para invocar a la API en forma masiva (uno por servicio) y ver los tiempos de respuesta de cada 
-invocacion.
-Los scripts utilizan el comando Unix _parallel_, en caso de ejecutar en entorno Mac OS se puede instalar el comando 
-ejecutando en una terminal el siguiente comando: 
-
-```
-brew install parallel
-```
-
-Para el servicio de verificacion de ADN, el script envia en el body de la peticion la secuencia de ADN que se encuentra
-en el archivo [dna-mutant.json](./scripts/invoke-mutants.sh).
-
-La cantidad de peticiones en paralelo que se quieren ejecutar se corresponde con el valor que se encuentra seguido del 
-comando _seq_: seq *1000* | parallel....
-
 #### Cobertura
 
-Si bien la cobertura de codigo en la herramienta Codecov muestra un 70%, ejecutando los test localmente con la herramienta
-Jacoco nos da 78%.
+El análisis de cobertura se encuentra disponible en
 
-![coverage](./doc/images/coverage.png)
+`src/coverage`
