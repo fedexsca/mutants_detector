@@ -33,7 +33,7 @@ El archivo PDF con el enunciado recibido se encuentra en la carpeta `especificac
 
 ### Comentarios
 Decidí realizar el desafío con las tecnologías con las que estoy más familiarizado.
-No había tenido la oportinidad de trabajar anteriormente con [Slim Framework](http://sparkjava.com) ni había realizado deploys en Google App Engine, por lo que me apoyé en la documentación de cada uno para realizar el proyecto.
+No había tenido la oportinidad de trabajar anteriormente con [Slim Framework](http://www.slimframework.com/) ni había realizado deploys en Google App Engine, por lo que me apoyé en la documentación de cada uno para realizar el proyecto.
 
 ### Algoritmo
 Definí tres algoritmos: 1 de uso general y dos especiales para matrices con tamaño 5 y 6
@@ -48,7 +48,7 @@ Nota: Ambos algoritmos utilizan el mismo método para las búsquedas en las diag
 #### Gráfico
 ![Estrategias de búsqueda](grafico.png)
 
-- Gris: Posibles ubicaciónes de la secuencia mutante en una fila o columna
+- Gris: Posibles ubicaciónes de la secuencia mutante en una fila
 - Verde: Condición necesaria para que exista posibilidad de que sea mutante.
 - Celeste: Ubicaciones a verificar en caso de encontrar coincidencia en columnas centrales
 
@@ -69,8 +69,7 @@ private $dbhost = 'su_host';
 ```
 4. Abra la terminal y colóquese sobre la carpeta raiz del proyecto
 5. Instale las dependencias con ```composer install```
-6. Inicie el servicio mediante ```php -S localhost:8888 -t public public/index.php
-```
+6. Inicie el servicio mediante ``` php -S localhost:8888 -t public public/index.php``` 
 7. Podrá verificar el funcionamento visitando [http://localhost:8888/](http://localhost:8888/)
 
 ### API Url
