@@ -63,13 +63,13 @@ Para ejecutar el proyecto es necesario contar PHP 7.2 y MySQL.
 3. En el archivo /config/db.php completar con sus datos de conexión a la base de datos:
 ```php
 private $dbhost = 'su_host';
- private $dbuser = 'su_usuario';
- private $dbpass = 'su_password';
- private $dbname = 'nombre_db';
+private $dbuser = 'su_usuario';
+private $dbpass = 'su_password';
+private $dbname = 'nombre_db';
 ```
 4. Abra la terminal y colóquese sobre la carpeta raiz del proyecto
 5. Instale las dependencias con ```$composer install```
-6. Inicie el servicio mediante ```$php -S localhost:8888 -t public public/index.php``` 
+6. Inicie el servicio mediante ```$php -S localhost:8888 -t public public/index.php```
 7. Podrá verificar el funcionamento visitando [http://localhost:8888/](http://localhost:8888/)
 
 ### API Url
