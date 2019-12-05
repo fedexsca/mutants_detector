@@ -43,8 +43,8 @@ Definí tres algoritmos: 1 de uso general y dos especiales para matrices con tam
 - El algoritmo de uso en casos especiales busca aumentar la eficiencia del detector al llevar a cabo menos comparaciones. Este se basa en la premisa que si se busca una secuencia de 4 caracteres idénticos en matrices con tamaño menor o igual a 6 es condición necesaria que el par de elementos centrales de la fila o la columna coincidan. De esta manera se puede descartar una fila o columna no mutante con solo una comparación.
 Si en cambio se encuentra coincidencia en los elementos centrales, se procede a comparar con los elementos anteriores y siguientes para determinar si el adn es mutante.
 
-Nota: Aunque la condición también se aplica a matrices con tamaño 4, no habría reducción en la cantidad de comparaciones necesarias, por este motivo se continúan analizando con el algoritmo de uso general.
-Nota: Ambos algoritmos utilizan el mismo método para las búsquedas en las diagonales.
+Nota: Aunque la condición también se aplica a matrices con tamaño 4, no habría reducción en la cantidad de comparaciones necesarias, por este motivo se continúan analizando con el algoritmo de uso general.  
+Nota: Los tres algoritmos utilizan el mismo método para las búsquedas en las diagonales.
 
 #### Gráfico
 ![Estrategias de búsqueda](grafico.png)
