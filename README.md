@@ -20,7 +20,7 @@ cuales representa cada base nitrogenada del ADN.
 
 El archivo PDF con el enunciado recibido se encuentra en la carpeta `especificaciones`.
 
-### Implementacion y requisitos
+### Implementacion, tecnoligías y requisitos
 
 - [Slim Framework](http://www.slimframework.com/)
 - [MySQL](https://www.mysql.com/)
@@ -28,11 +28,11 @@ El archivo PDF con el enunciado recibido se encuentra en la carpeta `especificac
 - [PHPUnit](https://phpunit.de/)
 - [XDebug](https://xdebug.org/)
 
-#### Requisitos
+#### Requisitos para instalar dependecias
  [Composer](https://getcomposer.org/) para dependecias
 
 ### Comentarios
-Decidí realizar el desafío con las tecnologías con las que estoy más familiarizado.
+Decidí realizar el desafío con las tecnologías con las que estoy más familiarizado y eso me llevó a la búsqueda de un framework rápido y liviano para desarrollar la API con PHP.
 No había tenido la oportinidad de trabajar anteriormente con [Slim Framework](http://www.slimframework.com/) ni había realizado deploys en Google App Engine, por lo que me apoyé en la documentación de cada uno para realizar el proyecto.
 
 ### Algoritmo
@@ -56,7 +56,6 @@ Nota: Ambos algoritmos utilizan el mismo método para las búsquedas en las diag
 
 ### Instrucciones
 Para ejecutar el proyecto es necesario contar PHP 7.2 y MySQL.
-
 
 1. Clonar este repositorio.
 2. Se debe crear una base de datos, en ella importar el al archivo "migration.sql" que se encuentra en el directorio /db.
