@@ -44,7 +44,8 @@ Definí tres algoritmos: 1 de uso general y dos especiales para matrices con tam
 Si en cambio se encuentra coincidencia en los elementos centrales, se procede a comparar con los elementos anteriores y siguientes para determinar si el adn es mutante.
 
 Nota: Aunque la condición también se aplica a matrices con tamaño 4, no habría reducción en la cantidad de comparaciones necesarias, por este motivo se continúan analizando con el algoritmo de uso general.  
-Nota: Los tres algoritmos utilizan el mismo método para las búsquedas en las diagonales.
+
+Nota: Los tres algoritmos utilizan el mismo método para las búsquedas en las diagonales y diagonales inversas. No se tienen en cuenta diagonales con dimensión menor a 4. El algoritmo de la búsqueda en diagonal está definida en una función que recibe el llamado desde cada uno de los tres algoritmos antes mencionados.
 
 #### Gráfico
 ![Estrategias de búsqueda](grafico.png)
